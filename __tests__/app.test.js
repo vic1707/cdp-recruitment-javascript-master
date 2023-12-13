@@ -1,5 +1,4 @@
 const {
-    calculateAndAppendCounts,
     calculateAndAppendCountsPure,
     filterByAnimals,
     parseCLIArguments,
@@ -176,11 +175,8 @@ describe('Counting', () => {
             },
         ];
 
-        const pureEdited = calculateAndAppendCountsPure(given);
+        const res = calculateAndAppendCountsPure(given);
 
-        calculateAndAppendCounts(given);
-        expect(given).toEqual(expected);
-        expect(pureEdited).toEqual(expected);
-        expect(pureEdited).toEqual(given);
+        expect(res).toEqual(expected);
     });
 });
