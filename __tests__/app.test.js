@@ -1,4 +1,9 @@
-const { calculateAndAppendCounts, calculateAndAppendCountsPure, filterByAnimals, parseCLIArguments } = require('../app');
+const {
+    calculateAndAppendCounts,
+    calculateAndAppendCountsPure,
+    filterByAnimals,
+    parseCLIArguments,
+} = require('../app');
 const { data } = require('../data.js');
 Object.freeze(data);
 
@@ -116,7 +121,7 @@ describe('Counting', () => {
                     },
                     {
                         name: 'Dennis Franci [0]',
-                        animals: []
+                        animals: [],
                     },
                     {
                         name: 'Anthony Bruno [6]',
