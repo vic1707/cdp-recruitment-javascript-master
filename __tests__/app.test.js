@@ -72,6 +72,44 @@ describe('Filtering', () => {
         const res = filterByAnimals(data, ['ry']);
         expect(res).toEqual(expected);
     });
+
+    it('Should keep keys order', () => {
+        const given = [
+            {
+                name: 'Uzuzozne',
+                people: [
+                    {
+                        name: 'Dennis Franci',
+                        animals: [
+                            { name: 'Grouse' },
+                            { name: 'Donkey' },
+                            { name: 'Hapuka' },
+                            { name: 'Cheetah' },
+                            { name: 'Turkey' },
+                            { name: 'Carp' },
+                            { name: 'Octopus' },
+                            { name: 'Silkworm' },
+                            { name: 'Bearded Dragon' },
+                        ],
+                    },
+                ],
+            },
+        ];
+        const expected = [
+            {
+                name: 'Uzuzozne',
+                people: [
+                    {
+                        name: 'Dennis Franci',
+                        animals: [{ name: 'Donkey' }, { name: 'Turkey' }],
+                    },
+                ],
+            },
+        ];
+
+        const res = filterByAnimals(given, ['ke']);
+        expect(res).toEqual(expected);
+    });
 });
 
 describe('Counting', () => {
