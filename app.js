@@ -75,8 +75,23 @@ function filterByAnimals(countries, filters) {
     });
 }
 
+/**
+ * @description Appends the number of people to the country name and the number of animals to the people name.
+ * @param {Country[]} countries Countries to edit.
+ * @returns {void}
+ */
+function calculateAndAppendCounts(countries) {
+    countries.forEach((country) => {
+        country.name += ` [${country.people.length}]`;
+        country.people.forEach((person) => {
+            person.name += ` [${person.animals.length}]`;
+        });
+    });
+}
+
 // Used for testing purposes
 module.exports = {
+    calculateAndAppendCounts,
     filterByAnimals,
     parseCLIArguments,
 };

@@ -1,4 +1,4 @@
-const { filterByAnimals, parseCLIArguments } = require('../app');
+const { calculateAndAppendCounts, filterByAnimals, parseCLIArguments } = require('../app');
 const { data } = require('../data.js');
 Object.freeze(data);
 const DATA_AS_STRING = JSON.stringify(data); // Used to freeze keys order in data
@@ -70,5 +70,74 @@ describe('Filtering', () => {
         ];
         const res = filterByAnimals(data, ['ry']);
         expect(JSON.stringify(res)).toEqual(JSON.stringify(expected)); // checks that the order of keys is the same
+    });
+});
+
+describe('Counting', () => {
+    it('Should append counts to the example', () => {
+        const given = [
+            {
+                name: 'Uzuzozne',
+                people: [
+                    {
+                        name: 'Lillie Abbott',
+                        animals: [
+                            {
+                                name: 'John Dory',
+                            },
+                        ],
+                    },
+                    {
+                        name: 'Dennis Franci',
+                        animals: [],
+                    },
+                    {
+                        name: 'Anthony Bruno',
+                        animals: [
+                            { name: 'Caracal' },
+                            { name: 'Anteater' },
+                            { name: 'Kiwa Hirsuta' },
+                            { name: 'Zooplankton' },
+                            { name: 'Tarantula' },
+                            { name: 'Oryx' },
+                        ],
+                    },
+                ],
+            },
+        ];
+
+        const expected = [
+            {
+                name: 'Uzuzozne [3]',
+                people: [
+                    {
+                        name: 'Lillie Abbott [1]',
+                        animals: [
+                            {
+                                name: 'John Dory',
+                            },
+                        ],
+                    },
+                    {
+                        name: 'Dennis Franci [0]',
+                        animals: []
+                    },
+                    {
+                        name: 'Anthony Bruno [6]',
+                        animals: [
+                            { name: 'Caracal' },
+                            { name: 'Anteater' },
+                            { name: 'Kiwa Hirsuta' },
+                            { name: 'Zooplankton' },
+                            { name: 'Tarantula' },
+                            { name: 'Oryx' },
+                        ],
+                    },
+                ],
+            },
+        ];
+
+        calculateAndAppendCounts(given);
+        expect(JSON.stringify(given)).toEqual(JSON.stringify(expected)); // checks that the order of keys is the same
     });
 });
