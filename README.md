@@ -2,13 +2,14 @@
 
 ## Filter
 
-Your job is to write a command-line interface in Node.js. 
+Your job is to write a command-line interface in Node.js.
 This program has to filter a list of elements containing a pattern.
 
 Details:
-- In the following file `data.js`, there are `Countries` containing `Peoples` containing `Animals`.
-- Only animals containing the pattern passed as argument (e.g. `ry`) are displayed. The order should be kept intact.
-- Empty array after filtering are NOT returned.
+
+-   In the following file `data.js`, there are `Countries` containing `Peoples` containing `Animals`.
+-   Only animals containing the pattern passed as argument (e.g. `ry`) are displayed. The order should be kept intact.
+-   Empty array after filtering are NOT returned.
 
 Sample of running the command, and its output:
 
@@ -79,12 +80,12 @@ node app.js --count
 
 ## Requirements
 
-- The code must be available in a GIT repository
-- No library/modules should be used, except for the testing library
+-   The code must be available in a GIT repository
+-   No library/modules should be used, except for the testing library
 
 ## Appreciation
 
 We will be really attentive to:
 
-- Code readability, structure and consistency
-- Tests, and how they are written
+-   Code readability, structure and consistency
+-   Tests, and how they are written

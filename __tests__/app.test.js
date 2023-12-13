@@ -1,8 +1,4 @@
-const {
-    calculateAndAppendCountsPure,
-    filterByAnimals,
-    parseCLIArguments,
-} = require('../app');
+const { calculateAndAppendCountsPure, filterByAnimals, parseCLIArguments } = require('../app');
 const { data } = require('../data.js');
 Object.freeze(data);
 
