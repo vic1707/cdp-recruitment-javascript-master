@@ -57,9 +57,7 @@ function filterByAnimals(countries, filters) {
         const filteredPeople = people.filter((person) => {
             const { animals } = person;
 
-            const filteredAnimals = animals.filter((animal) => {
-                const { name } = animal;
-
+            const filteredAnimals = animals.filter(({ name }) => {
                 return filters.some((filter) => name.includes(filter));
             });
 
