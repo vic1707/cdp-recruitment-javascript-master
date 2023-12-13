@@ -35,13 +35,18 @@ function parseCLIArguments() {
     return arguments_map;
 }
 
-
-
-
-
-
+/**
+ * @description Deep filter countries by partial animal names.
+ * @param {Country[]} countries Countries to filter.
+ * @param {String[]} filters Partial animal names to filter by.
+ * @returns {Country[]} Filtered countries.
+ */
+function filterByAnimals(countries, filters) {
+    return countries
+}
 
 // Used for testing purposes
 module.exports = {
+    filterByAnimals,
     parseCLIArguments,
 };
