@@ -15,9 +15,9 @@ describe('CLI Args parsing', () => {
         expect(parseCLIArguments()).toEqual(expected);
     });
 
-    it('should ignore arguments without "="', () => {
-        process.argv = ['node', 'app.js', '--filter'];
-        const expected = new Map();
+    it('should allow positionnal arguments (no `=`)', () => {
+        process.argv = ['node', 'app.js', '--count'];
+        const expected = new Map([['count', true]]);
         expect(parseCLIArguments()).toEqual(expected);
     });
 
