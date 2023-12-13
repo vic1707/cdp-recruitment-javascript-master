@@ -108,6 +108,27 @@ function calculateAndAppendCountsPure(countries) {
     }));
 }
 
+/////////////////////
+/////// Main ////////
+/////////////////////
+function main() {
+    const args = parseCLIArguments();
+    const filters = args.get('filter');
+
+    // isArray because filter could be given as a positionnal argument
+    // resulting in a boolean `true` value
+    if (Array.isArray(filters)) {
+        logCompleteObject(filterByAnimals(data, filters));
+    } else if (args.has('count')) {
+        logCompleteObject(calculateAndAppendCountsPure(data));
+    }
+}
+
+// ensures to run main only if this file is executed directly
+if (require.main === module) {
+    main();
+}
+
 // Used for testing purposes
 module.exports = {
     calculateAndAppendCounts,
