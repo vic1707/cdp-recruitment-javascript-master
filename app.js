@@ -25,7 +25,7 @@ function parseCLIArguments() {
         // Extract argument name and value. Add them to the map.
         .forEach((arg) => {
             const [key, value] = arg.split('=');
-            const argumentName = key.replace('--', '');
+            const argumentName = key.slice(2);
             const values = arguments_map.get(argumentName) || [];
 
             values.push(value);
