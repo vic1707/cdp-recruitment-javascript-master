@@ -42,7 +42,33 @@ function parseCLIArguments() {
  * @returns {Country[]} Filtered countries.
  */
 function filterByAnimals(countries, filters) {
-    return countries
+    if (filters.length === 0) {
+        return countries;
+    }
+
+    return countries.filter((country) => {
+        const { people } = country;
+
+        const filteredPeople = people.filter((person) => {
+            const { animals } = person;
+
+            const filteredAnimals = animals.filter((animal) => {
+                const { name } = animal;
+
+                return filters.some((filter) => name.includes(filter));
+            });
+
+            // Update the animals array
+            person.animals = filteredAnimals;
+
+            return filteredAnimals.length > 0;
+        });
+        
+        // Update the people array
+        country.people = filteredPeople;
+
+        return filteredPeople.length > 0;
+    });
 }
 
 // Used for testing purposes
