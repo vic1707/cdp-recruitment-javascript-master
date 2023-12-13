@@ -6,6 +6,7 @@
  * @type {Country[]}
  */
 const { data } = require('./data.js');
+Object.freeze(data);
 
 // allows us to use console.log with objects and get the full object printed
 const { inspect } = require('util');
@@ -67,7 +68,7 @@ function filterByAnimals(countries, filters) {
 
             return filteredAnimals.length > 0;
         });
-        
+
         // Update the people array
         country.people = filteredPeople;
 
@@ -89,9 +90,25 @@ function calculateAndAppendCounts(countries) {
     });
 }
 
+/**
+ * @description `calculateAndAppendCounts` but without modification of the original array, returnsa new modified array.
+ * @param {Country[]} countries
+ * @returns {Country[]}
+ */
+function calculateAndAppendCountsPure(countries) {
+    return countries.map(({ name, people }) => ({
+        name: `${name} [${people.length}]`,
+        people: people.map(({ name, animals }) => ({
+            name: `${name} [${animals.length}]`,
+            animals,
+        })),
+    }));
+}
+
 // Used for testing purposes
 module.exports = {
     calculateAndAppendCounts,
+    calculateAndAppendCountsPure,
     filterByAnimals,
     parseCLIArguments,
 };

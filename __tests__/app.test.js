@@ -1,4 +1,4 @@
-const { calculateAndAppendCounts, filterByAnimals, parseCLIArguments } = require('../app');
+const { calculateAndAppendCounts, calculateAndAppendCountsPure, filterByAnimals, parseCLIArguments } = require('../app');
 const { data } = require('../data.js');
 Object.freeze(data);
 
@@ -133,7 +133,11 @@ describe('Counting', () => {
             },
         ];
 
+        const pureEdited = calculateAndAppendCountsPure(given);
+
         calculateAndAppendCounts(given);
         expect(given).toEqual(expected);
+        expect(pureEdited).toEqual(expected);
+        expect(pureEdited).toEqual(given);
     });
 });
