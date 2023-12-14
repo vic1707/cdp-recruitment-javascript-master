@@ -110,11 +110,14 @@ function main() {
 
     // isArray because filter could be given as a positionnal argument
     // resulting in a boolean `true` value
+    let dataToLog = data;
     if (Array.isArray(filters)) {
-        logCompleteObject(filterByAnimals(data, filters));
-    } else if (args.has('count')) {
-        logCompleteObject(calculateAndAppendCountsPure(data));
+        dataToLog = filterByAnimals(dataToLog, filters);
     }
+    if (args.has('count')) {
+        dataToLog = calculateAndAppendCountsPure(dataToLog);
+    }
+    logCompleteObject(dataToLog);
 }
 
 // ensures to run main only if this file is executed directly

@@ -428,6 +428,93 @@ const EXEMPLE_2 = `[
   }
 ]`;
 
+// run `node app.js --filter=an --count`.
+const BOTH_AT_ONCE = `[
+  {
+    name: 'Dillauti [3]',
+    people: [
+      {
+        name: 'Philip Murray [2]',
+        animals: [ { name: 'Sand Dollar' }, { name: 'Elephant' } ]
+      },
+      {
+        name: 'Bobby Ristori [2]',
+        animals: [ { name: 'Caecilian' }, { name: 'Sand Cat' } ]
+      },
+      {
+        name: 'Louise Pinzauti [2]',
+        animals: [ { name: 'Manta Ray' }, { name: 'Nubian Ibex' } ]
+      }
+    ]
+  },
+  {
+    name: 'Tohabdal [5]',
+    people: [
+      {
+        name: 'Effie Houghton [2]',
+        animals: [ { name: 'Blue Iguana' }, { name: 'African Wild Ass' } ]
+      },
+      {
+        name: 'Essie Bennett [2]',
+        animals: [ { name: 'Patagonian Toothfish' }, { name: 'Giant Panda' } ]
+      },
+      {
+        name: 'Owen Bongini [1]',
+        animals: [ { name: 'African Wild Dog' } ]
+      },
+      {
+        name: 'Linnie Lamb [2]',
+        animals: [ { name: 'African Wild Dog' }, { name: 'Red Panda' } ]
+      },
+      {
+        name: 'Randall Benoît [2]',
+        animals: [ { name: 'Giant Isopod' }, { name: 'Sand Cat' } ]
+      }
+    ]
+  },
+  {
+    name: 'Uzuzozne [4]',
+    people: [
+      { name: 'Harold Patton [1]', animals: [ { name: 'Sand Cat' } ] },
+      { name: 'Millie Lapini [1]', animals: [ { name: 'Crane Fly' } ] },
+      {
+        name: 'Lina Allen [1]',
+        animals: [ { name: 'Caribbean Flamingo' } ]
+      },
+      {
+        name: 'Georgia Hooper [1]',
+        animals: [ { name: 'African Wild Dog' } ]
+      }
+    ]
+  },
+  {
+    name: 'Zuhackog [1]',
+    people: [
+      {
+        name: 'Fannie Ancillotti [1]',
+        animals: [ { name: 'Crane Fly' } ]
+      }
+    ]
+  },
+  {
+    name: 'Satanwi [3]',
+    people: [
+      {
+        name: 'Cora Howell [1]',
+        animals: [ { name: 'African Wild Dog' } ]
+      },
+      {
+        name: 'Ernest Conte [1]',
+        animals: [ { name: 'Asian Elephant' } ]
+      },
+      {
+        name: 'Anthony Bruno [2]',
+        animals: [ { name: 'Zooplankton' }, { name: 'Tarantula' } ]
+      }
+    ]
+  }
+]`;
+
 describe('E2E', () => {
     it('should pass exemple 1', async () => {
         // run `node app.js --filter=ry` and check the output
@@ -437,5 +524,10 @@ describe('E2E', () => {
     it('should pass exemple 2', async () => {
         // run `node app.js --count` and check the output
         await runner().spawn('node app.js --count').stdout(EXEMPLE_2);
+    });
+
+    it('should pass both at once', async () => {
+        // run `node app.js --filter=an --count` and check the output
+        await runner().spawn('node app.js --filter=an --count').stdout(BOTH_AT_ONCE);
     });
 });
