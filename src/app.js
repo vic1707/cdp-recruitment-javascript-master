@@ -1,10 +1,3 @@
-/*
-    Note for review: the function `parseCLIArguments` could be removed since node.js provides a built-in function for this:
-        https://nodejs.org/api/util.html#utilparseargsconfig (stable since v20.0.0)
-    However, as this exercise is a technical evaluation and the function has only been stable for a short time, 
-    I've assumed that you don't want it to be used.
- */
-
 /**
  * @typedef {import('./data.js').Country} Country
  */
@@ -15,95 +8,13 @@
 const { data } = require('./data/data.js');
 Object.freeze(data);
 
-// allows us to use console.log with objects and get the full object printed
-const { inspect } = require('util');
-const logCompleteObject = (obj) => console.log(inspect(obj, { showHidden: false, depth: null }));
+const { logCompleteObject } = require('./core/utils.js');
+const { filterByAnimals } = require('./core/filter.js');
+const { calculateAndAppendCountsPure } = require('./core/counting.js');
+const { parseCLIArguments } = require('./core/cli.js');
 
-/**
- * @description Parse CLI arguments. Arguments are expected to be in the form of:
- * --argumentName=argumentValue
- * --positionnalArgument
- * @returns {Map<String, Array<String>>} Map of arguments.
- */
-function parseCLIArguments() {
-    const args = process.argv.slice(2);
-    /**
-     * @type {Map<String, Array<String> | Boolean>}
-     */
-    const arguments_map = new Map();
+//////////////////////////
 
-    args
-        // Filter out arguments that do not start with '--'.
-        .filter((arg) => arg.startsWith('--'))
-        // Parse arguments.
-        .forEach((arg) => {
-            const [key, value] = arg.slice(2).split('=');
-            // If value is defined, it means the argument is in the form of --argumentName=argumentValue.
-            if (value) {
-                if (!arguments_map.has(key)) arguments_map.set(key, []);
-                arguments_map.get(key).push(value);
-            }
-            // If value is undefined, it means the argument is in the form of --positionnalArgument.
-            else {
-                arguments_map.set(key, true);
-            }
-        });
-
-    return arguments_map;
-}
-
-/**
- * @description Deep filter countries by partial animal names.
- * @param {Country[]} countries Countries to filter.
- * @param {String[]} filters Partial animal names to filter by.
- * @returns {Country[]} Filtered countries.
- */
-function filterByAnimals(countries, filters) {
-    if (filters.length === 0) {
-        return countries;
-    }
-
-    // filter mutates original data if a prop is an array or nested object
-    // so we'll use reduce instead to keep the original data intact
-    return countries.reduce((acc, { name, people }) => {
-        const filteredPeople = people.reduce((acc, { name, animals }) => {
-            const filteredAnimals = animals.filter((animal) => {
-                return filters.some((filter) => animal.name.includes(filter));
-            });
-
-            // keep people only if they have at least one animal matching the filters
-            if (filteredAnimals.length > 0) {
-                acc.push({ name, animals: filteredAnimals });
-            }
-            return acc;
-        }, []);
-
-        // keep countries only if they have at least one people matching the filters
-        if (filteredPeople.length > 0) {
-            acc.push({ name, people: filteredPeople });
-        }
-        return acc;
-    }, []);
-}
-
-/**
- * @description `calculateAndAppendCounts` but without modification of the original array, returnsa new modified array.
- * @param {Country[]} countries
- * @returns {Country[]}
- */
-function calculateAndAppendCountsPure(countries) {
-    return countries.map(({ name, people }) => ({
-        name: `${name} [${people.length}]`,
-        people: people.map(({ name, animals }) => ({
-            name: `${name} [${animals.length}]`,
-            animals,
-        })),
-    }));
-}
-
-/////////////////////
-/////// Main ////////
-/////////////////////
 function main() {
     const args = parseCLIArguments();
     const filters = args.get('filter');
@@ -124,10 +35,3 @@ function main() {
 if (require.main === module) {
     main();
 }
-
-// Used for testing purposes
-module.exports = {
-    calculateAndAppendCountsPure,
-    filterByAnimals,
-    parseCLIArguments,
-};

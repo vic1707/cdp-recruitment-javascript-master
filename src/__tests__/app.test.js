@@ -1,4 +1,6 @@
-const { calculateAndAppendCountsPure, filterByAnimals, parseCLIArguments } = require('../app');
+const { filterByAnimals } = require('../core/filter.js');
+const { calculateAndAppendCountsPure } = require('../core/counting.js');
+const { parseCLIArguments } = require('../core/cli.js');
 const { data } = require('../data/data.js');
 Object.freeze(data);
 
