@@ -428,7 +428,7 @@ const EXEMPLE_2 = `[
   }
 ]`;
 
-// run `node app.js --filter=an --count`.
+// run `node src/app.js --filter=an --count`.
 const BOTH_AT_ONCE = `[
   {
     name: 'Dillauti [3]',
@@ -517,14 +517,14 @@ const BOTH_AT_ONCE = `[
 
 describe('E2E', () => {
     it('should pass exemple 1', async () => {
-        await runner().spawn('node app.js --filter=ry').stdout(EXEMPLE_1);
+        await runner().spawn('node src/app.js --filter=ry').stdout(EXEMPLE_1);
     });
 
     it('should pass exemple 2', async () => {
-        await runner().spawn('node app.js --count').stdout(EXEMPLE_2);
+        await runner().spawn('node src/app.js --count').stdout(EXEMPLE_2);
     });
 
     it('should pass both at once', async () => {
-        await runner().spawn('node app.js --filter=an --count').stdout(BOTH_AT_ONCE);
+        await runner().spawn('node src/app.js --filter=an --count').stdout(BOTH_AT_ONCE);
     });
 });

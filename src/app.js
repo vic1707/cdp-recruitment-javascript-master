@@ -12,7 +12,7 @@
 /**
  * @type {Country[]}
  */
-const { data } = require('./data.js');
+const { data } = require('./data/data.js');
 Object.freeze(data);
 
 // allows us to use console.log with objects and get the full object printed

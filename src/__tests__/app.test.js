@@ -1,5 +1,5 @@
 const { calculateAndAppendCountsPure, filterByAnimals, parseCLIArguments } = require('../app');
-const { data } = require('../data.js');
+const { data } = require('../data/data.js');
 Object.freeze(data);
 
 describe('CLI Args parsing', () => {
