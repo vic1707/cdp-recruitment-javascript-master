@@ -93,3 +93,10 @@ We will be really attentive to:
 ## Note from the applicant
 
 No idications were given about case sensitivity, so I assumed that the search is case insensitive.
+
+### How to run
+
+The main file `app.js` has been move to the `src` directory instead of the root directory:
+this is to clearly separate the source code from the project management files.
+Therefore, the command to run the program is `node src/app.js <argument(s)>` instead of `node app.js <argument(s)>`.
+For example, to run the program with the `--filter=ry` argument, the command is `node src/app.js --filter=ry`.
