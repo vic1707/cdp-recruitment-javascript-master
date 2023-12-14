@@ -517,17 +517,14 @@ const BOTH_AT_ONCE = `[
 
 describe('E2E', () => {
     it('should pass exemple 1', async () => {
-        // run `node app.js --filter=ry` and check the output
         await runner().spawn('node app.js --filter=ry').stdout(EXEMPLE_1);
     });
 
     it('should pass exemple 2', async () => {
-        // run `node app.js --count` and check the output
         await runner().spawn('node app.js --count').stdout(EXEMPLE_2);
     });
 
     it('should pass both at once', async () => {
-        // run `node app.js --filter=an --count` and check the output
         await runner().spawn('node app.js --filter=an --count').stdout(BOTH_AT_ONCE);
     });
 });
