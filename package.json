@@ -4,7 +4,8 @@
     "main": "app.js",
     "scripts": {
         "start": "node app.js",
-        "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+        "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+        "test:ci": "act"
     },
     "devDependencies": {
         "@types/jest": "^29.5.11",
