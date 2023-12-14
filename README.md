@@ -89,3 +89,7 @@ We will be really attentive to:
 
 -   Code readability, structure and consistency
 -   Tests, and how they are written
+
+## Note from the applicant
+
+No idications were given about case sensitivity, so I assumed that the search is case insensitive.

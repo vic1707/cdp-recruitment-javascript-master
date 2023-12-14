@@ -431,11 +431,20 @@ const EXEMPLE_2 = `[
 // run `node src/app.js --filter=an --count`.
 const BOTH_AT_ONCE = `[
   {
-    name: 'Dillauti [3]',
+    name: 'Dillauti [5]',
     people: [
+      { name: 'Winifred Graham [1]', animals: [ { name: 'Anoa' } ] },
       {
-        name: 'Philip Murray [2]',
-        animals: [ { name: 'Sand Dollar' }, { name: 'Elephant' } ]
+        name: 'Blanche Viciani [1]',
+        animals: [ { name: 'Antelope' } ]
+      },
+      {
+        name: 'Philip Murray [3]',
+        animals: [
+          { name: 'Sand Dollar' },
+          { name: 'Elephant' },
+          { name: 'Anchovy' }
+        ]
       },
       {
         name: 'Bobby Ristori [2]',
@@ -488,17 +497,25 @@ const BOTH_AT_ONCE = `[
     ]
   },
   {
-    name: 'Zuhackog [1]',
+    name: 'Zuhackog [2]',
     people: [
       {
-        name: 'Fannie Ancillotti [1]',
-        animals: [ { name: 'Crane Fly' } ]
+        name: 'Herman Christensen [1]',
+        animals: [ { name: 'Anteater' } ]
+      },
+      {
+        name: 'Fannie Ancillotti [2]',
+        animals: [ { name: 'Anaconda' }, { name: 'Crane Fly' } ]
       }
     ]
   },
   {
-    name: 'Satanwi [3]',
+    name: 'Satanwi [4]',
     people: [
+      {
+        name: 'Elmer Kinoshita [2]',
+        animals: [ { name: 'Anteater' }, { name: 'Ant' } ]
+      },
       {
         name: 'Cora Howell [1]',
         animals: [ { name: 'African Wild Dog' } ]
@@ -508,8 +525,12 @@ const BOTH_AT_ONCE = `[
         animals: [ { name: 'Asian Elephant' } ]
       },
       {
-        name: 'Anthony Bruno [2]',
-        animals: [ { name: 'Zooplankton' }, { name: 'Tarantula' } ]
+        name: 'Anthony Bruno [3]',
+        animals: [
+          { name: 'Anteater' },
+          { name: 'Zooplankton' },
+          { name: 'Tarantula' }
+        ]
       }
     ]
   }

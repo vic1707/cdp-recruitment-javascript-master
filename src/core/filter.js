@@ -13,8 +13,8 @@ function filterByAnimals(countries, filters) {
     // so we'll use reduce instead to keep the original data intact
     return countries.reduce((acc, { name, people }) => {
         const filteredPeople = people.reduce((acc, { name, animals }) => {
-            const filteredAnimals = animals.filter((animal) => {
-                return filters.some((filter) => animal.name.includes(filter));
+            const filteredAnimals = animals.filter(({ name }) => {
+                return filters.some((filter) => name.toLowerCase().includes(filter.toLowerCase()));
             });
 
             // keep people only if they have at least one animal matching the filters
