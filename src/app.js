@@ -63,27 +63,27 @@ function filterByAnimals(countries, filters) {
         return countries;
     }
 
-    return countries.filter((country) => {
-        const { people } = country;
-
-        const filteredPeople = people.filter((person) => {
-            const { animals } = person;
-
-            const filteredAnimals = animals.filter(({ name }) => {
-                return filters.some((filter) => name.includes(filter));
+    // filter mutates original data if a prop is an array or nested object
+    // so we'll use reduce instead to keep the original data intact
+    return countries.reduce((acc, { name, people }) => {
+        const filteredPeople = people.reduce((acc, { name, animals }) => {
+            const filteredAnimals = animals.filter((animal) => {
+                return filters.some((filter) => animal.name.includes(filter));
             });
 
-            // Update the animals array
-            person.animals = filteredAnimals;
+            // keep people only if they have at least one animal matching the filters
+            if (filteredAnimals.length > 0) {
+                acc.push({ name, animals: filteredAnimals });
+            }
+            return acc;
+        }, []);
 
-            return filteredAnimals.length > 0;
-        });
-
-        // Update the people array
-        country.people = filteredPeople;
-
-        return filteredPeople.length > 0;
-    });
+        // keep countries only if they have at least one people matching the filters
+        if (filteredPeople.length > 0) {
+            acc.push({ name, people: filteredPeople });
+        }
+        return acc;
+    }, []);
 }
 
 /**

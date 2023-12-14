@@ -66,6 +66,8 @@ describe('Filtering', () => {
         ];
         const res = filterByAnimals(data, ['ry']);
         expect(res).toEqual(expected);
+        // check that input is not modified (function should be pure)
+        expect(data).not.toEqual(res);
     });
 
     it('Should keep keys order', () => {
@@ -90,6 +92,8 @@ describe('Filtering', () => {
                 ],
             },
         ];
+        Object.freeze(given);
+
         const expected = [
             {
                 name: 'Uzuzozne',
@@ -104,6 +108,8 @@ describe('Filtering', () => {
 
         const res = filterByAnimals(given, ['ke']);
         expect(res).toEqual(expected);
+        // check that input is not modified (function should be pure)
+        expect(given).not.toEqual(expected);
     });
 });
 
